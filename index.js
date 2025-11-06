@@ -65,6 +65,7 @@ app.get("/posts/:id",(req,res)=>{
 //CHALLENGE 3: POST a new post
 app.post("/posts",(req,res)=>{
 
+  try{
  if (!req.body.title || !req.body.content || !req.body.author) {
     return res.status(400).json({ message: "Missing required fields: title, content or author" });
   }
@@ -81,6 +82,9 @@ app.post("/posts",(req,res)=>{
   posts.push(newpost)
   console.log("Created post:", newpost);
   res.status(201).json(posts)
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching posts" });
+  }
 })
 
 //CHALLENGE 4: PATCH a post when you just want to update one parameter
