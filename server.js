@@ -17,6 +17,9 @@ app.use(bodyParser.json());
 app.set("view engine","ejs")
 app.set("views",join(__dirname,"views"))
 
+const cors = require("cors");
+app.use(cors());
+
 // Route to render the main page
 app.get("/", async (req, res) => {
   try {
